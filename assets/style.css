@@ -45,3 +45,15 @@ figcaption { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.85re
 .disclaimer { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.85rem; color: var(--text-soft); background: #f2eef7; border-left: 3px solid var(--lavender); padding: 1rem 1.2rem; margin: 2rem 0; }
 footer { text-align: center; padding: 2.5rem 1.5rem; color: var(--text-soft); font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.85rem; border-top: 1px solid #e8e2ec; }
 .back-link { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.9rem; display: inline-block; margin-bottom: 2rem; }
+
+
+         .newsletter-signup { background: var(--white); border: 1.5px solid var(--lavender-light); border-radius: 12px; padding: 2rem 1.75rem; max-width: 480px; margin: 2.5rem auto; text-align: center; font-family: inherit; box-shadow: 0 2px 12px rgba(139, 123, 168, 0.1); }
+.newsletter-signup h3 { margin: 0 0 0.5rem; font-size: 1.3rem; color: var(--lavender-dark); font-weight: normal; }
+.newsletter-signup p { margin: 0 0 1rem; font-size: 0.95rem; color: var(--text-soft); font-family: 'Helvetica Neue', Arial, sans-serif; }
+.newsletter-signup form { display: flex; flex-direction: column; gap: 0.6rem; }
+.newsletter-signup label { display: none; }
+.newsletter-signup input[type="email"] { padding: 0.75rem 0.9rem; border: 1px solid var(--lavender-light); border-radius: 8px; font-size: 1rem; font-family: 'Helvetica Neue', Arial, sans-serif; }
+.newsletter-signup input[type="email"]:focus { outline: none; border-color: var(--lavender); }
+.newsletter-signup input[type="submit"] { padding: 0.75rem 0.9rem; border: none; border-radius: 30px; background: var(--lavender); color: var(--white); font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+.newsletter-signup input[type="submit"]:hover { background: var(--lavender-dark); }
+.newsletter-signup .bd-footer { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.75rem; color: var(--text-soft); margin-top: 0.75rem; opacity: 0.7; }
