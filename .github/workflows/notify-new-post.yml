@@ -1,0 +1,108 @@
+name: Notify Buttondown on new blog post
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'nl/blog/**.html'
+      - 'en/blog/**.html'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect newly added blog posts
+        id: detect
+        run: |
+          echo "Comparing ${{ github.event.before }} to ${{ github.sha }}"
+          if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+            echo "No previous commit (first push), skipping diff."
+            echo "files=" >> "$GITHUB_OUTPUT"
+          else
+            FILES=$(git diff --diff-filter=A --name-only "${{ github.event.before }}" "${{ github.sha }}" -- 'nl/blog/*.html' 'en/blog/*.html' || true)
+            echo "New files: $FILES"
+            {
+              echo "files<<EOF"
+              echo "$FILES"
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create Buttondown draft for each new post
+        if: steps.detect.outputs.files != ''
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          NEW_FILES: ${{ steps.detect.outputs.files }}
+        run: |
+          python3 - <<'PYEOF'
+          import os
+          import re
+          import json
+          import urllib.request
+
+          api_key = os.environ["BUTTONDOWN_API_KEY"]
+          new_files = os.environ["NEW_FILES"].strip().splitlines()
+
+          base_url = "https://triplebhealing.github.io"
+
+          def extract(html_path):
+              with open(html_path, encoding="utf-8") as f:
+                  content = f.read()
+              title_match = re.search(r"<h1>(.*?)</h1>", content, re.S)
+              title = title_match.group(1).strip() if title_match else html_path
+              desc_match = re.search(r"</h1>\\s*<p>(.*?)</p>", content, re.S)
+              description = re.sub("<.*?>", "", desc_match.group(1)).strip() if desc_match else ""
+              return title, description
+
+          for path in new_files:
+              path = path.strip()
+              if not path:
+                  continue
+              title, description = extract(path)
+              url_path = path if path.startswith("/") else "/" + path
+              full_url = base_url + url_path
+
+              lang = "nl" if path.startswith("nl/") else "en"
+              if lang == "nl":
+                  subject = f"Nieuwe blogpost: {title}"
+                  body = (
+                      f"Er staat een nieuwe blogpost online: **{title}**\\n\\n"
+                      f"{description}\\n\\n"
+                      f"Lees het volledige artikel: {full_url}\\n"
+                  )
+              else:
+                  subject = f"New blog post: {title}"
+                  body = (
+                      f"A new blog post is live: **{title}**\\n\\n"
+                      f"{description}\\n\\n"
+                      f"Read the full article: {full_url}\\n"
+                  )
+
+              payload = json.dumps({
+                  "subject": subject,
+                  "body": body,
+                  "status": "draft",
+              }).encode("utf-8")
+
+              req = urllib.request.Request(
+                  "https://api.buttondown.com/v1/emails",
+                  data=payload,
+                  method="POST",
+                  headers={
+                      "Authorization": f"Token {api_key}",
+                      "Content-Type": "application/json",
+                  },
+              )
+              try:
+                  with urllib.request.urlopen(req) as resp:
+                      print(f"Created draft for {path}: {resp.status}")
+              except urllib.error.HTTPError as e:
+                  print(f"Failed for {path}: {e.code} {e.read().decode()}")
+                  raise
+          PYEOF
