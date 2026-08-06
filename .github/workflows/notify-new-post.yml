@@ -40,7 +40,7 @@ jobs:
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
           NEW_FILES: ${{ steps.detect.outputs.files }}
         run: |
-          python3 - <<'PYEOF'
+          cat > /tmp/notify_buttondown.py <<'PYEOF'
           import os
           import re
           import json
@@ -56,7 +56,7 @@ jobs:
                   content = f.read()
               title_match = re.search(r"<h1>(.*?)</h1>", content, re.S)
               title = title_match.group(1).strip() if title_match else html_path
-              desc_match = re.search(r"</h1>\\s*<p>(.*?)</p>", content, re.S)
+              desc_match = re.search(r"</h1>\s*<p>(.*?)</p>", content, re.S)
               description = re.sub("<.*?>", "", desc_match.group(1)).strip() if desc_match else ""
               return title, description
 
@@ -70,19 +70,24 @@ jobs:
 
               lang = "nl" if path.startswith("nl/") else "en"
               if lang == "nl":
-                  subject = f"Nieuwe blogpost: {title}"
-                  body = (
-                      f"Er staat een nieuwe blogpost online: **{title}**\\n\\n"
-                      f"{description}\\n\\n"
-                      f"Lees het volledige artikel: {full_url}\\n"
-                  )
+                  subject = "Nieuwe blogpost: " + title
+                  body_lines = [
+                      "Er staat een nieuwe blogpost online: **" + title + "**",
+                      "",
+                      description,
+                      "",
+                      "Lees het volledige artikel: " + full_url,
+                  ]
               else:
-                  subject = f"New blog post: {title}"
-                  body = (
-                      f"A new blog post is live: **{title}**\\n\\n"
-                      f"{description}\\n\\n"
-                      f"Read the full article: {full_url}\\n"
-                  )
+                  subject = "New blog post: " + title
+                  body_lines = [
+                      "A new blog post is live: **" + title + "**",
+                      "",
+                      description,
+                      "",
+                      "Read the full article: " + full_url,
+                  ]
+              body = "\n".join(body_lines)
 
               payload = json.dumps({
                   "subject": subject,
@@ -95,14 +100,15 @@ jobs:
                   data=payload,
                   method="POST",
                   headers={
-                      "Authorization": f"Token {api_key}",
+                      "Authorization": "Token " + api_key,
                       "Content-Type": "application/json",
                   },
               )
               try:
                   with urllib.request.urlopen(req) as resp:
-                      print(f"Created draft for {path}: {resp.status}")
+                      print("Created draft for " + path + ": " + str(resp.status))
               except urllib.error.HTTPError as e:
-                  print(f"Failed for {path}: {e.code} {e.read().decode()}")
+                  print("Failed for " + path + ": " + str(e.code) + " " + e.read().decode())
                   raise
           PYEOF
+          python3 /tmp/notify_buttondown.py
