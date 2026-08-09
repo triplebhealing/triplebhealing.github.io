@@ -41,8 +41,8 @@ h3 { font-size: 1.25rem; color: var(--lavender); }
 .card { background: var(--white); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(139, 123, 168, 0.1); margin-bottom: 2rem; }
 .contact-box { text-align: center; background: var(--white); border-radius: 12px; padding: 2.5rem; box-shadow: 0 2px 12px rgba(139, 123, 168, 0.1); }
 .contact-box a.email { font-size: 1.2rem; font-weight: bold; }
-figure { margin: 2rem 0; text-align: center; }
-figure img { max-width: 100%; border-radius: 10px; }
+figure { margin: 2rem auto; text-align: center; }
+figure img { width: 50%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 10px; }
 figcaption { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.85rem; color: var(--text-soft); margin-top: 0.5rem; }
 .disclaimer { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.85rem; color: var(--text-soft); background: #f2eef7; border-left: 3px solid var(--lavender); padding: 1rem 1.2rem; margin: 2rem 0; }
 footer { text-align: center; padding: 2.5rem 1.5rem; color: var(--text-soft); font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.85rem; border-top: 1px solid #e8e2ec; }
