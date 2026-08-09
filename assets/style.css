@@ -14,6 +14,7 @@ a { color: var(--lavender-dark); text-decoration: none; }
 a:hover { text-decoration: underline; }
 .site-header { background: var(--white); border-bottom: 1px solid #e8e2ec; padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
 .site-header .brand { display: flex; align-items: center; gap: 0.7rem; }
+.site-header .brand-logo { height: 48px; width: 48px; border-radius: 50%; }
 .site-header .brand-name { font-size: 1.3rem; font-weight: bold; color: var(--lavender-dark); letter-spacing: 0.02em; }
 nav.main-nav { display: flex; gap: 1.5rem; align-items: center; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.95rem; }
 nav.main-nav a { color: var(--text); padding: 0.3rem 0; border-bottom: 2px solid transparent; }
@@ -23,6 +24,7 @@ nav.main-nav a:hover, nav.main-nav a.active { color: var(--lavender-dark); borde
 .lang-switch a.active { color: var(--lavender-dark); font-weight: bold; }
 main { max-width: 780px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
 .hero { text-align: center; padding: 3rem 1.5rem 2rem; }
+.hero-logo { width: 180px; height: 180px; border-radius: 50%; margin-bottom: 1rem; }
 .hero h1 { font-size: 2.2rem; color: var(--lavender-dark); margin-bottom: 0.5rem; }
 .hero p.tagline { font-size: 1.15rem; color: var(--text-soft); font-style: italic; max-width: 520px; margin: 0 auto; }
 .button { display: inline-block; margin-top: 1.5rem; padding: 0.7rem 1.8rem; background: var(--lavender); color: var(--white) !important; border-radius: 30px; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.95rem; text-decoration: none; }
