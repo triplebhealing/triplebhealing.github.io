@@ -24,7 +24,7 @@ nav.main-nav a:hover, nav.main-nav a.active { color: var(--lavender-dark); borde
 .lang-switch a.active { color: var(--lavender-dark); font-weight: bold; }
 main { max-width: 780px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
 .hero { text-align: center; padding: 3rem 1.5rem 2rem; }
-.hero-logo { width: 350px; height: 350px; border-radius: 50%; margin-bottom: 1rem; }
+.hero-logo { width: 350px; height: 350px; border-radius: 50%; margin-bottom: 0.25rem; }
 .hero h1 { font-size: 2.2rem; color: var(--lavender-dark); margin-bottom: 0.5rem; }
 .hero p.tagline { font-size: 1.15rem; color: var(--text-soft); font-style: italic; max-width: 520px; margin: 0 auto; }
 .button { display: inline-block; margin-top: 1.5rem; padding: 0.7rem 1.8rem; background: var(--lavender); color: var(--white) !important; border-radius: 30px; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.95rem; text-decoration: none; }
