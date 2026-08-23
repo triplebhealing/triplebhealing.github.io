@@ -47,6 +47,13 @@ figcaption { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.85re
 .disclaimer { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.85rem; color: var(--text-soft); background: #f2eef7; border-left: 3px solid var(--lavender); padding: 1rem 1.2rem; margin: 2rem 0; }
 footer { text-align: center; padding: 2.5rem 1.5rem; color: var(--text-soft); font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.85rem; border-top: 1px solid #e8e2ec; }
 .back-link { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.9rem; display: inline-block; margin-bottom: 2rem; }
+.post-nav { display: flex; justify-content: space-between; gap: 1.5rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e8e2ec; font-family: 'Helvetica Neue', Arial, sans-serif; }
+.post-nav a { flex: 1; text-decoration: none; color: var(--text-soft); }
+.post-nav a:hover { color: var(--lavender); }
+.post-nav .post-nav-label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--earth); margin-bottom: 0.3rem; }
+.post-nav .post-nav-title { display: block; font-size: 1rem; color: var(--lavender-dark); }
+.post-nav .post-nav-next { text-align: right; }
+@media (max-width: 600px) { .post-nav { flex-direction: column; gap: 1.25rem; } .post-nav .post-nav-next { text-align: left; } }
 
 
          .newsletter-signup { background: var(--white); border: 1.5px solid var(--lavender-light); border-radius: 12px; padding: 2rem 1.75rem; max-width: 480px; margin: 2.5rem auto; text-align: center; font-family: inherit; box-shadow: 0 2px 12px rgba(139, 123, 168, 0.1); }
