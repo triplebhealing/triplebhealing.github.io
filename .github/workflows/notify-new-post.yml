@@ -33,53 +33,6 @@ jobs:
               echo "EOF"
             } >> "$GITHUB_OUTPUT"
           fi
-      - name: Add Giscus comments section to new posts
-        if: steps.detect.outputs.files != ''
-        env:
-          NEW_FILES: ${{ steps.detect.outputs.files }}
-        run: |
-          cat > /tmp/add_giscus.py <<'PYEOF'
-          import os
-          new_files = os.environ["NEW_FILES"].strip().splitlines()
-          TPL = ('<section class="comments"><script src="https://giscus.app/client.js" '
-                 'data-repo="triplebhealing/triplebhealing.github.io" data-repo-id="R_kgDOTuxD1A" '
-                 'data-category="Announcements" data-category-id="DIC_kwDOTuxD1M4DDIzb" '
-                 'data-mapping="pathname" data-strict="0" data-reactions-enabled="1" '
-                 'data-emit-metadata="0" data-input-position="bottom" '
-                 'data-theme="preferred_color_scheme" data-lang="{lang}" '
-                 'crossorigin="anonymous" async></script></section>')
-          for path in new_files:
-              path = path.strip()
-              if not path or not path.endswith(".html") or not os.path.exists(path):
-                  continue
-              with open(path, encoding="utf-8") as f:
-                  content = f.read()
-              if "giscus.app" in content:
-                  continue
-              lang = "nl" if path.startswith("nl/") else "en"
-              snippet = TPL.format(lang=lang)
-              if "</main>" in content:
-                  content = content.replace("</main>", snippet + "\n</main>", 1)
-                  with open(path, "w", encoding="utf-8") as f:
-                      f.write(content)
-                  print("Added giscus comments to " + path)
-          PYEOF
-          python3 /tmp/add_giscus.py
-
-      - name: Commit Giscus comment sections
-        if: steps.detect.outputs.files != ''
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if ! git diff --cached --quiet; then
-            git commit -m "Auto-add Giscus comments section to new blog post(s)"
-            git push
-          else
-            echo "No changes to commit."
-          fi
-
-
       - name: Create Buttondown draft for each new post
         if: steps.detect.outputs.files != ''
         env:
