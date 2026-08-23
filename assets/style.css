@@ -1,12 +1,12 @@
 :root {
-    --lavender: #7b5fc4;
-    --lavender-light: #3fc1c9;
-    --lavender-dark: #1b3a6b;
-    --cream: #faf8f5;
-    --earth: #2a9aa1;
-    --text: #3a3540;
-    --text-soft: #6b6472;
-    --white: #ffffff;
+--lavender: #7b5fc4;
+--lavender-light: #3fc1c9;
+--lavender-dark: #1b3a6b;
+--cream: #faf8f5;
+--earth: #2a9aa1;
+--text: #3a3540;
+--text-soft: #6b6472;
+--white: #ffffff;
 }
 * { box-sizing: border-box; }
 body { margin: 0; font-family: 'Georgia', 'Times New Roman', serif; background: var(--cream); color: var(--text); line-height: 1.7; }
@@ -24,7 +24,7 @@ nav.main-nav a:hover, nav.main-nav a.active { color: var(--lavender-dark); borde
 .lang-switch a.active { color: var(--lavender-dark); font-weight: bold; }
 main { max-width: 780px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
 .hero { text-align: center; padding: 3rem 1.5rem 2rem; }
-.hero-logo { width: 350px; height: 350px; border-radius: 50%; margin-bottom: 0.25rem; }
+.hero-logo { width: 350px; height: 350px; border-radius: 50%; margin-bottom: -65px; }
 .hero h1 { font-size: 2.2rem; color: var(--lavender-dark); margin-bottom: 0.5rem; }
 .hero p.tagline { font-size: 1.15rem; color: var(--text-soft); font-style: italic; max-width: 520px; margin: 0 auto; }
 .button { display: inline-block; margin-top: 1.5rem; padding: 0.7rem 1.8rem; background: var(--lavender); color: var(--white) !important; border-radius: 30px; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.95rem; text-decoration: none; }
@@ -55,8 +55,7 @@ footer { text-align: center; padding: 2.5rem 1.5rem; color: var(--text-soft); fo
 .post-nav .post-nav-next { text-align: right; }
 @media (max-width: 600px) { .post-nav { flex-direction: column; gap: 1.25rem; } .post-nav .post-nav-next { text-align: left; } }
 
-
-         .newsletter-signup { background: var(--white); border: 1.5px solid var(--lavender-light); border-radius: 12px; padding: 2rem 1.75rem; max-width: 480px; margin: 2.5rem auto; text-align: center; font-family: inherit; box-shadow: 0 2px 12px rgba(139, 123, 168, 0.1); }
+.newsletter-signup { background: var(--white); border: 1.5px solid var(--lavender-light); border-radius: 12px; padding: 2rem 1.75rem; max-width: 480px; margin: 2.5rem auto; text-align: center; font-family: inherit; box-shadow: 0 2px 12px rgba(139, 123, 168, 0.1); }
 .newsletter-signup h3 { margin: 0 0 0.5rem; font-size: 1.3rem; color: var(--lavender-dark); font-weight: normal; }
 .newsletter-signup p { margin: 0 0 1rem; font-size: 0.95rem; color: var(--text-soft); font-family: 'Helvetica Neue', Arial, sans-serif; }
 .newsletter-signup form { display: flex; flex-direction: column; gap: 0.6rem; }
