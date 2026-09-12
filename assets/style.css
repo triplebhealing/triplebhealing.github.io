@@ -65,3 +65,5 @@ footer { text-align: center; padding: 2.5rem 1.5rem; color: var(--text-soft); fo
 .newsletter-signup input[type="submit"] { padding: 0.75rem 0.9rem; border: none; border-radius: 30px; background: var(--lavender); color: var(--white); font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
 .newsletter-signup input[type="submit"]:hover { background: var(--lavender-dark); }
 .newsletter-signup .bd-footer { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.75rem; color: var(--text-soft); margin-top: 0.75rem; opacity: 0.7; }
+
+figure.hero-image img { width: 65%; }
