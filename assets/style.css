@@ -23,10 +23,15 @@ nav.main-nav a:hover, nav.main-nav a.active { color: var(--lavender-dark); borde
 .lang-switch a { color: var(--text-soft); padding: 0.2rem 0.4rem; }
 .lang-switch a.active { color: var(--lavender-dark); font-weight: bold; }
 main { max-width: 780px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
-.hero { text-align: center; padding: 3rem 1.5rem 2rem; }
-.hero-logo { width: 350px; height: 350px; border-radius: 50%; margin-bottom: -65px; }
+.hero { text-align: center; padding: 2.2rem 1.5rem 1.1rem; }
+.hero-logo { width: 250px; height: 250px; border-radius: 50%; }
 .hero h1 { font-size: 2.2rem; color: var(--lavender-dark); margin-bottom: 0.5rem; }
 .hero p.tagline { font-size: 1.15rem; color: var(--text-soft); font-style: italic; max-width: 520px; margin: 0 auto; }
+.hero-photo { width: 700px; max-width: 92%; height: 380px; margin: 0 auto 1.5rem; overflow: hidden; border-radius: 12px; }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+.hero-intro { text-align: center; padding: 0 1.5rem 2rem; }
+.hero-intro .tagline { font-size: 1.15rem; color: var(--text-soft); font-style: italic; max-width: 520px; margin: 0 auto; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .button { display: inline-block; margin-top: 1.5rem; padding: 0.7rem 1.8rem; background: var(--lavender); color: var(--white) !important; border-radius: 30px; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.95rem; text-decoration: none; }
 .button:hover { background: var(--lavender-dark); text-decoration: none; }
 h1, h2, h3 { color: var(--lavender-dark); font-weight: normal; }
