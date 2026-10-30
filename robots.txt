@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://triplebhealing.github.io/sitemap.xml
+Sitemap: https://triplebhealing.com/sitemap.xml
